@@ -143,7 +143,7 @@ class KrakenRTLSDRGPS:
         self.last_detection_time = time.time()
         self.prev_detected_prns = set()
         # Power gate (normalized IQ). Detections are ignored below this average power.
-        self.min_signal_power = 1e-3
+        self.min_signal_power = 1e-5  # Lowered from 1e-4 to 1e-5 for weak signals
         
         # Signal handler for clean shutdown
         signal.signal(signal.SIGINT, self._signal_handler)
