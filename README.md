@@ -120,3 +120,7 @@ The system is designed to work with real GPS signal recordings:
 The acquisition threshold can be tuned based on signal quality:
 - Lower threshold (1.0-1.5): More sensitive, may detect weak signals
 - Higher threshold (2.0-3.0): More selective, reduces false detections
+
+##use this command to check this with the bladeRF and kraken Software
+
+python kraken_rtlsdr_gps_acquisition.py rate=2.6 bandwidth=2.6 offset_khz=250 gain=35 threshold=2.0
