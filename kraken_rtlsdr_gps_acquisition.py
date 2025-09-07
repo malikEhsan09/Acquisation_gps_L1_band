@@ -81,7 +81,7 @@ class CircularIQBuffer:
                 second_chunk = n_samples - first_chunk
                 
                 samples[:first_chunk] = self.buffer[start_pos:]
-                samples[first_chunk:] = self.buffer[:second_chunk]
+                samples[second_chunk:] = self.buffer[:second_chunk]
             
             return samples
     
@@ -95,14 +95,14 @@ class KrakenRTLSDRGPS:
     """Real-time GPS acquisition using KrakenSDR/RTL-SDR"""
     
     def __init__(self,
-                 center_freq=1575.42e6,  # GPS L1 frequency
-                 sample_rate=2.4e6,      # Sample rate (Hz)
-                 gain='auto',            # RTL-SDR gain ('auto' or dB)
-                 device_index=0,         # RTL-SDR device index (0-4 for KrakenSDR)
-                 buffer_size_ms=5000,    # Buffer size in milliseconds
-                 acq_threshold=2.5,      # GPS acquisition threshold
-                 bandwidth=None,         # Tuner bandwidth (Hz). Defaults to sample_rate
-                 rx_offset_khz=0.0):     # RX frequency offset to avoid DC spike (kHz)
+                center_freq=1575.42e6,  # GPS L1 frequency
+                sample_rate=2.4e6,      # Sample rate (Hz)
+                gain='auto',            # RTL-SDR gain ('auto' or dB)
+                device_index=0,         # RTL-SDR device index (0-4 for KrakenSDR)
+                buffer_size_ms=5000,    # Buffer size in milliseconds
+                acq_threshold=2.5,      # GPS acquisition threshold
+                bandwidth=None,         # Tuner bandwidth (Hz). Defaults to sample_rate
+                rx_offset_khz=0.0):     # RX frequency offset to avoid DC spike (kHz)
         
         if not RTLSDR_AVAILABLE:
             raise ImportError("RTL-SDR Python library not available")
@@ -485,7 +485,7 @@ class KrakenRTLSDRGPS:
                                 print(f"      PRN {prn:2d}: Rejected (Doppler |{carr_freq-self.if_hz:.0f}|>{max_dopp_hz:.0f} Hz)")
                                 continue
                             print(f"      PRN {prn:2d}: Peak={peak_metric:.2f}, "
-                                  f"Freq={carr_freq:+6.1f}Hz, Phase={code_phase:4.0f}")
+                                f"Freq={carr_freq:+6.1f}Hz, Phase={code_phase:4.0f}")
                         self.last_detection_time = time.time()
                     else:
                         print("   ℹ️ Candidates detected; awaiting confirmation next cycle")
