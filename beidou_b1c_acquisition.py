@@ -20,7 +20,7 @@ class BeiDouB1CAcquisition:
                  IF=0.0,
                  acq_satellite_list=None,
                  acq_search_band=14.0,
-                 acq_threshold=2.0):
+                 acq_threshold=2.0): 
         self.sampling_freq = float(sampling_freq)
         self.IF = float(IF)
         self.acq_threshold = float(acq_threshold)
